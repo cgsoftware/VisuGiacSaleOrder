@@ -2,20 +2,52 @@
 <openerp>
   <data>
     
-      <record id="giac_ordini_view_form" model="ir.ui.view">
-      <field name="name">"giac_ordini_view.form</field>
-      <field name="model">sale.order</field>
-	<field name="inherit_id" ref="sale.view_order_form"/>
-      <field name="arch" type="xml">
-                    <field name="type" position="after">
-                          <newline/>
-                    <field name="real_stock"  readonly='True'  ></field>                  
-				<field name="virtual_stock"  readonly='True'  ></field>                                        
-                    
-                                        </field>
+        <record model="ir.ui.view" id="view_order_tree_giacenze">
+            <field name="name">view.order.tree.giacenze</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="/form/notebook/page/field[@name='order_line']/form/notebook" position="inside">
+                    	<page string="Giacenze">
+                         <field colspan="4" mode="tree,form,graph" name="location_qtys" nolabel="1" widget="one2many_list" readonly="True">
+                                <tree string="Giacenze">                                    
+                                    <field name="location_id" />
+                                    <field name="real_stock" />
+                                    <field name="virtual_stock"/>
+                                </tree>
+                         	
+                         </field>
+                         </page>
+                    </xpath>        
+                </data>
+            </field>
+        </record>      
                                         
-      </field>
-    </record>
+
+        <record model="ir.ui.view" id="view_docs_tree_giacenze">
+            <field name="name">view.docs.tree.giacenze</field>
+            <field name="model">fiscaldoc.header</field>
+            <field name="inherit_id" ref="ItalianFiscalDocument.view_fiscaldoc_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="/form/notebook/page/field[@name='righe_articoli']/form/notebook" position="inside">
+                    	<page string="Giacenze">
+                         <field colspan="4" mode="tree,form,graph" name="location_qtys" nolabel="1" widget="one2many_list" readonly="True">
+                                <tree string="Giacenze">                                    
+                                    <field name="location_id" />
+                                    <field name="real_stock" />
+                                    <field name="virtual_stock"/>
+                                </tree>
+                         	
+                         </field>
+                         </page>
+                    </xpath>        
+                </data>
+            </field>
+        </record>      
+
+
   
    </data>
 </openerp>

@@ -26,7 +26,7 @@
      Visualizza su ogni riga dell'ordine di vendita la giacenza reale e virtuale attuale
     """,
     'author': 'C & G Software',
-    "depends" : ['sale'],
+    "depends" : ['sale','ItalianFiscalDocument'],
     "update_xml" : [
                     'view_giac.xml',
                     ],
